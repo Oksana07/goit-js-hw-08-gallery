@@ -63,3 +63,9 @@ const galleryItems = [
     description: 'Lighthouse Coast Sea',
   },
 ];
+
+const ulEl = document.querySelector('.gallery');
+
+console.log(ulEl);
+
+
