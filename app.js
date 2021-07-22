@@ -64,8 +64,50 @@ const galleryItems = [
   },
 ];
 
-const ulEl = document.querySelector('.gallery');
-
-console.log(ulEl);
 
 
+
+// import galleryItems from "./app.js";
+
+const refs = {
+  mainGallery: document.querySelector(".js-gallery"),
+  lightBoxEl: document.querySelector(".js-lightbox"),
+  modal: document.querySelector(".lightboxcontent"),
+  lightboxImage: document.querySelector(".lightboximage"),
+  btnLightBox: document.querySelector('[data-action="close-lightbox"]'),
+  overlayEl: document.querySelector(".lightboxoverlay"),
+};
+
+// refs.mainGallery.addEventListener("click", isGalleryImage);
+// refs.btnLightBox.addEventListener("click", closeLightBoxWindow);
+// refs.modal.addEventListener("click", closeLightBoxImage);
+// refs.overlayEl.addEventListener("click", onOverlayClose);
+
+// сoздаю пример карточки
+function createImgCardMarkup(galleryItems) {
+  return galleryItems
+  .map(({ preview, original, description }, index) => {
+      return `<li class="galleryitem >
+      <a
+        class="gallerylink"
+        href="${original}"
+      >
+        <img
+          class="galleryimage"
+          src="${preview}"
+          data-source="${original}" 
+          alt="${description}"
+          data-index="${index}"
+        />
+      </a>
+    </li>`;
+    })
+    .join("");
+}
+
+
+const cardsItem = createImgCardMarkup(galleryItems); // вивел всею разметку в карточки
+console.log(cardsItem);
+
+refs.mainGallery.insertAdjacentHTML("beforeend", cardsItem); // вставил разметку
+// console.log(mainGalery);
