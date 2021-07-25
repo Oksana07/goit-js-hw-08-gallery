@@ -51,7 +51,7 @@ const galleryItems = [
   {
     preview:
       'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255__340.jpg',
-      imageEl:
+    original:
       'https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg',
     description: 'Nature Landscape',
   },
@@ -80,64 +80,55 @@ const galleryItems = [
 // ulEl.appendChild(liEl);
 
 
-const ulEl = document.querySelector('.js-gallery');
-const elements = [];
-for (let i = 0; i < galleryItems.length; i+= 1) {
-  const liEl = document.createElement('li');
-  const imageEl = document.createElement('img');
-  liEl.appendChild(imageEl);
-imageEl.src = galleryItems[i].preview
-  elements.push(liEl);
-}
-
-console.log(elements);
-ulEl.append(...elements);
-
-
-
-// Пєтя
-// import galleryItems from "./app.js";
-
-// const refs = {
-//   mainGallery: document.querySelector(".js-gallery"),
-//   lightBoxEl: document.querySelector(".js-lightbox"),
-//   modal: document.querySelector(".lightboxcontent"),
-//   lightboxImage: document.querySelector(".lightboximage"),
-//   btnLightBox: document.querySelector('[data-action="close-lightbox"]'),
-//   overlayEl: document.querySelector(".lightboxoverlay"),
-// };
-
-// // refs.mainGallery.addEventListener("click", isGalleryImage);
-// // refs.btnLightBox.addEventListener("click", closeLightBoxWindow);
-// // refs.modal.addEventListener("click", closeLightBoxImage);
-// // refs.overlayEl.addEventListener("click", onOverlayClose);
-
-// // сoздаю пример карточки
-// function createImgCardMarkup(galleryItems) {
-//   return galleryItems
-//   .map(({ preview, original, description }, index) => {
-//       return `<li class="galleryitem >
-//       <a
-//         class="gallerylink"
-//         href="${original}"
-//       >
-//         <img
-//           class="galleryimage"
-//           src="${preview}"
-//           data-source="${original}" 
-//           alt="${description}"
-//           data-index="${index}"
-//         />
-//       </a>
-//     </li>`;
-//     })
-//     .join("");
+// const ulEl = document.querySelector('.js-gallery');
+// const elements = [];
+// for (let i = 0; i < galleryItems.length; i+= 1) {
+//   const liEl = document.createElement('li');
+//   const imageEl = document.createElement('img');
+//   liEl.appendChild(imageEl);
+// imageEl.src = galleryItems[i].preview
+//   elements.push(liEl);
 // }
 
+// console.log(elements);
+// ulEl.append(...elements);
 
-// const cardsItem = createImgCardMarkup(galleryItems); // вивел всею разметку в карточки
-// console.log(cardsItem);
 
-// refs.mainGallery.insertAdjacentHTML("beforeend", cardsItem); // вставил разметку
-// // console.log(mainGalery);
+
+// const ulEl = document.querySelector('.js-gallery');
+// const elements = [];
+// for (let i = 0; i < galleryItems.length; i+= 1) {
+//   const liEl = document.createElement('li');
+//   const imageEl = document.createElement('img');
+//   liEl.appendChild(imageEl);
+// imageEl.src = galleryItems[i].preview
+//   elements.push(liEl);
+// }
+
+// console.log(elements);
+// ulEl.append(...elements);
+
+const ulEl = document.querySelector('.js-gallery');
+
+function createElement () {
+  return galleryItems
+      .map(({ original, preview, description }, index) => {
+        return `
+        <li class = gallery__item> 
+        <a href="${original}" class = gallery__link>
+          <img 
+            class = gallery__image 
+            src="${preview}" 
+            alt= "${description}" 
+            data-source='${original}'
+            data-index='${index}'> 
+        </a>
+      </li>
+      `;
+      })
+      .join('');
+    };
+  ulEl.insertAdjacentHTML('beforeend', createElement());
+  console.log(ulEl);
+
 
